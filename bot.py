@@ -158,18 +158,31 @@ async def auto_post():
         await asyncio.sleep(random.randint(300,600))
 
 # === Flask/AIOHTTP для Koyeb ===
-app=web.Application()
-async def handle(req): return web.Response(text="Bot running on port 8000")
-app.add_routes([web.get("/",handle)])
+app = web.Application()
 
-# === Запуск ===
-async def start_all():
-    loop=asyncio.get_event_loop()
-    loop.create_task(auto_post())
-    runner=web.AppRunner(app);await runner.setup()
-    site=web.TCPSite(runner,"0.0.0.0",8000);await site.start()
-    print("✅ Bot started on 8000")
-    await executor.start_polling(dp,skip_updates=True)
+async def handle(request):
+    return web.Response(text="✅ Bot is running on Koyeb (port 8000)")
 
-if __name__=="__main__":
-    asyncio.get_event_loop().run_until_complete(start_all())
+app.add_routes([web.get("/", handle)])
+
+
+# === Функция запуска aiohttp ===
+async def run_web():
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", 8000)
+    await site.start()
+    print("🌐 Health server started on port 8000")
+    while True:
+        await asyncio.sleep(3600)
+
+
+# === Основной запуск ===
+if __name__ == "__main__":
+    # Запускаем aiohttp-сервер в отдельном потоке
+    loop = asyncio.get_event_loop()
+    loop.create_task(run_web())
+
+    # Запускаем бота (aiogram сам управляет своим event loop)
+    print("✅ Bot started (aiogram polling)...")
+    executor.start_polling(dp, skip_updates=True)
