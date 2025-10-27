@@ -8,7 +8,7 @@ from aiogram.utils import executor
 from aiohttp import web
 
 # === НАСТРОЙКИ ===
-TOKEN = "8499397849:AAGgiXQhk6Wq0vIYFxMKicZwoIBFoqZNWJk"             # <-- сюда токен
+TOKEN = "8499397849:AAHJW3phDG_y19GOOLCCtnHMaippP_mziuU"             # <-- сюда токен
 ADMIN_ID = 7816374758            # <-- сюда свой ID
 CHANNEL_FOR_LOGS = "@wnref"  # <-- канал для авто сообщений
 START_DATE = "27.10.2025"
