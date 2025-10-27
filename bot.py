@@ -1,6 +1,6 @@
 import json, os, asyncio, random
 from datetime import datetime
-from aiogram import Bot, Dispatcher, types, F
+from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 from aiogram.filters import CommandStart
