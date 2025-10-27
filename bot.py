@@ -29,7 +29,7 @@ def load_json(file, default):
 def save_json(file, d): open(file, "w").write(json.dumps(d, indent=2))
 def load_data(): return load_json(DATA_FILE, {})
 def save_data(d): save_json(DATA_FILE, d)
-def load_channels(): return load_json(CHANNELS_FILE, ["@example_channel"])
+def load_channels(): return load_json(CHANNELS_FILE, ["@spinfortuna"])
 def save_channels(c): save_json(CHANNELS_FILE, c)
 
 # === Проверка подписки ===
